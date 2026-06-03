@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kolli Varshini | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..600;1,9..40,300..600&family=Playfair+Display:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+  <style>
+    /* CSS Variables */
+    :root {
+      --bg-color: #FAF8F5;
+      --gold: #D4A853;
+      --rose: #E8A0A0;
+      --sage: #A8C5A0;
+      --lavender: #D8D2E7;
+      --text-main: #333333;
+      --text-muted: #666666;
+      --font-display: 'Playfair Display', serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* Custom Cursor */
+    .cursor-glow {
+      position: fixed;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(232, 160, 160, 0.15) 0%, rgba(250, 248, 245, 0) 70%);
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+      transition: top 0.1s ease-out, left 0.1s ease-out;
+    }
+
+    /* Blob Background */
+    .blob {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(80px);
+      z-index: -1;
+      opacity: 0.6;
+      animation: float 20s infinite ease-in-out alternate;
+    }
+    .blob-1 {
+      width: 400px; height: 400px;
+      background: var(--rose);
+      top: -100px; left: -100px;
+    }
+    .blob-2 {
+      width: 500px; height: 500px;
+      background: var(--lavender);
+      bottom: -200px; right: -100px;
+      animation-delay: -5s;
+    }
+    .blob-3 {
+      width: 300px; height: 300px;
+      background: var(--sage);
+      top: 40%; left: 50%;
+      animation-delay: -10s;
+    }
+
+    @keyframes float {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(50px, 50px) scale(1.1); }
+    }
+
+    /* Utility */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+    .section-title {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--text-main);
+    }
+    .section-title span {
+      color: var(--gold);
+      font-style: italic;
+    }
+    
+    /* Scroll Animations */
+    .hidden {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Hero Section */
+    #hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-content h1 {
+      font-family: var(--font-display);
+      font-size: 5rem;
+      margin-bottom: 1rem;
+      letter-spacing: -1px;
+    }
+    .hero-subtitle {
+      font-size: 2rem;
+      font-style: italic;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+    .hero-tagline {
+      font-size: 1.2rem;
+      margin-bottom: 2.5rem;
+      color: var(--text-muted);
+    }
+    .btn-group {
+      display: flex;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+    .btn {
+      padding: 1rem 2.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .btn-primary {
+      background: var(--text-main);
+      color: white;
+    }
+    .btn-primary:hover {
+      background: var(--gold);
+      box-shadow: 0 10px 20px rgba(212, 168, 83, 0.3);
+      transform: translateY(-3px);
+    }
+    .btn-secondary {
+      background: transparent;
+      border-color: var(--text-main);
+      color: var(--text-main);
+    }
+    .btn-secondary:hover {
+      background: var(--rose);
+      border-color: var(--rose);
+      color: white;
+      box-shadow: 0 10px 20px rgba(232, 160, 160, 0.3);
+      transform: translateY(-3px);
+    }
+    
+    /* Hero background canvas */
+    #hero-canvas {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+      opacity: 0.7;
+    }
+
+    /* Diagonal separator */
+    .diagonal-sep {
+      width: 100%;
+      height: 120px;
+      background: var(--bg-color);
+      clip-path: polygon(0 0, 100% 120px, 100% 100%, 0 100%);
+      margin-top: -120px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* About Section */
+    #about {
+      padding: 8rem 0;
+      position: relative;
+      background: rgba(255,255,255,0.4);
+      backdrop-filter: blur(10px);
+    }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .about-img {
+      position: relative;
+    }
+    .about-img-blob {
+      width: 100%;
+      padding-top: 100%;
+      background: linear-gradient(135deg, var(--sage), var(--lavender));
+      border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+      animation: morph 8s ease-in-out infinite both alternate;
+      position: relative;
+      overflow: hidden;
+      box-shadow: inset 0 0 50px rgba(255,255,255,0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .about-img-blob img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0.9;
+    }
+    @keyframes morph {
+      0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+      100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+    }
+    .about-text {
+      background: rgba(255, 255, 255, 0.7);
+      padding: 3rem;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.03);
+      transition: all 0.4s ease;
+      position: relative;
+      z-index: 1;
+    }
+    .about-text:hover {
+      box-shadow: 0 25px 50px rgba(232, 160, 160, 0.15);
+      border-color: var(--rose);
+      transform: translateY(-5px);
+    }
+    .about-text p {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: var(--text-main);
+      margin-bottom: 1rem;
+    }
+
+    /* Education Timeline */
+    #education {
+      padding: 8rem 0;
+    }
+    .timeline {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 50px;
+      width: 2px;
+      height: 0;
+      background: var(--gold);
+      transition: height 2s ease-out;
+    }
+    .timeline.draw-line::before {
+      height: 100%;
+    }
+    .timeline-item {
+      position: relative;
+      margin-bottom: 3rem;
+      padding-left: 100px;
+    }
+    .timeline-icon {
+      position: absolute;
+      left: 35px;
+      top: 0;
+      width: 32px;
+      height: 32px;
+      background: var(--bg-color);
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      transition: all 0.4s ease;
+      box-shadow: 0 0 0 4px var(--bg-color);
+    }
+    .timeline-item:hover .timeline-icon {
+      transform: scale(1.3);
+      background: var(--gold);
+      color: white;
+    }
+    .timeline-content {
+      background: rgba(255,255,255,0.8);
+      padding: 2.5rem;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+      border-left: 4px solid transparent;
+      transition: all 0.4s ease;
+    }
+    .timeline-item:nth-child(1) .timeline-content { border-left-color: var(--rose); }
+    .timeline-item:nth-child(2) .timeline-content { border-left-color: var(--sage); }
+    .timeline-item:nth-child(3) .timeline-content { border-left-color: var(--gold); }
+    
+    .timeline-item:hover .timeline-content {
+      transform: translateX(15px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+    }
+    .timeline-content h3 { font-family: var(--font-display); font-size: 1.6rem; margin-bottom: 0.5rem; }
+    .timeline-content h4 { font-weight: 500; color: var(--text-main); margin-bottom: 0.8rem; font-size: 1.1rem; }
+    .timeline-content p { color: var(--gold); font-weight: 600; font-size: 0.95rem; }
+
+    /* Projects */
+    #projects {
+      padding: 8rem 0;
+      background: rgba(255,255,255,0.4);
+    }
+    .bento-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+    .project-card {
+      background: rgba(255,255,255,0.8);
+      border-radius: 24px;
+      padding: 3rem;
+      border: 1px solid rgba(255,255,255,0.5);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+      transform-style: preserve-3d;
+      position: relative;
+      cursor: pointer;
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 26px;
+      background: linear-gradient(45deg, var(--rose), var(--sage), var(--gold));
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .project-card:hover::before {
+      opacity: 0.4;
+      filter: blur(12px);
+    }
+    .project-card h3 {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      transform: translateZ(40px);
+    }
+    .project-tags {
+      display: flex;
+      gap: 0.8rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      transform: translateZ(30px);
+    }
+    .tag {
+      background: var(--bg-color);
+      padding: 0.5rem 1.2rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-main);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+      animation: pulse-tag 3s infinite alternate;
+      border: 1px solid rgba(200,200,200,0.3);
+    }
+    .tag:nth-child(2) { animation-delay: 0.7s; }
+    .tag:nth-child(3) { animation-delay: 1.4s; }
+    
+    @keyframes pulse-tag {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.05); background: white; border-color: var(--rose); }
+    }
+
+    .project-card p {
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      flex-grow: 1;
+      font-size: 1.05rem;
+      transform: translateZ(30px);
+    }
+    .project-icons {
+      display: flex;
+      gap: 1.5rem;
+      color: var(--gold);
+      font-size: 1.8rem;
+      transform: translateZ(50px);
+    }
+    .project-img {
+      width: 100%;
+      height: 200px;
+      border-radius: 12px;
+      object-fit: cover;
+      margin-bottom: 1.5rem;
+      transform: translateZ(20px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    /* Skills */
+    #skills {
+      padding: 8rem 0;
+      position: relative;
+    }
+    .skills-bg-svg {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+    }
+    .skills-column h3 {
+      font-family: var(--font-display);
+      font-size: 2.2rem;
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+    .tech-skills {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem 1.5rem;
+      text-align: center;
+    }
+    .skill-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .skill-ring {
+      position: relative;
+      width: 110px;
+      height: 110px;
+      margin-bottom: 1.2rem;
+    }
+    .skill-ring svg {
+      width: 110px;
+      height: 110px;
+      transform: rotate(-90deg);
+    }
+    .skill-ring circle {
+      fill: none;
+      stroke-width: 8;
+      stroke-linecap: round;
+    }
+    .skill-ring circle.bg {
+      stroke: rgba(0,0,0,0.05);
+    }
+    .skill-ring circle.progress {
+      stroke: var(--ring-color, var(--rose));
+      stroke-dasharray: 283; /* 2 * pi * r (~283 for r=45) */
+      stroke-dashoffset: 283;
+      transition: stroke-dashoffset 2s cubic-bezier(0.1, 0.7, 0.1, 1);
+    }
+    .skill-ring.animate circle.progress {
+      stroke-dashoffset: var(--offset);
+    }
+    .skill-ring-label {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--text-main);
+    }
+    .skill-name {
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--text-main);
+    }
+    
+    .other-skills-flex {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.2rem;
+      margin-top: 3.5rem;
+      justify-content: center;
+    }
+    .skill-pill {
+      padding: 0.9rem 1.8rem;
+      background: white;
+      border-radius: 50px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.06);
+      border: 1px solid rgba(0,0,0,0.02);
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-weight: 500;
+      color: var(--text-main);
+    }
+    .skill-pill:hover {
+      background: var(--sage);
+      color: white;
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(168, 197, 160, 0.4);
+    }
+    .skill-pill.interpersonal {
+      border-color: rgba(212, 168, 83, 0.3);
+      background: rgba(255,255,255,0.7);
+    }
+    .skill-pill.interpersonal:hover {
+      background: var(--gold);
+      color: white;
+      border-color: var(--gold);
+      box-shadow: 0 10px 25px rgba(212, 168, 83, 0.4);
+    }
+
+    /* Certifications */
+    #certifications {
+      padding: 8rem 0;
+      background: rgba(255,255,255,0.4);
+    }
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+    }
+    .cert-card {
+      background: linear-gradient(135deg, white, rgba(255,255,255,0.7));
+      padding: 2rem;
+      border-radius: 24px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid rgba(255,255,255,0.9);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+    }
+    .cert-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      border: 2px solid var(--gold);
+      border-radius: 24px;
+      opacity: 0;
+      transform: scale(1.05);
+      transition: all 0.4s;
+      pointer-events: none;
+    }
+    .cert-card:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.08);
+    }
+    .cert-card:hover::after {
+      opacity: 1;
+      transform: scale(1);
+    }
+    .cert-img-container {
+      width: 100%;
+      height: 180px;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 1.5rem;
+      background: var(--bg-color);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .cert-img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s;
+    }
+    .cert-card:hover .cert-img-container img {
+      transform: scale(1.1);
+    }
+    .cert-icon {
+      font-size: 2.5rem;
+      color: var(--sage);
+      margin-bottom: 1rem;
+      display: inline-block;
+    }
+    .cert-card h4 {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      margin-bottom: 0.8rem;
+      line-height: 1.3;
+    }
+    .cert-card p {
+      color: var(--text-muted);
+      font-size: 1rem;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    .cert-date {
+      font-size: 0.85rem !important;
+      color: var(--gold) !important;
+      margin-top: auto;
+    }
+
+    /* Contact */
+    #contact {
+      padding: 10rem 0 6rem 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    #contact h2 {
+      font-family: var(--font-display);
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      color: var(--text-main);
+    }
+    .contact-tagline {
+      font-size: 1.4rem;
+      color: var(--text-muted);
+      margin-bottom: 4rem;
+    }
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+    }
+    .contact-btn {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1.2rem 3.5rem;
+      font-size: 1.2rem;
+      font-weight: 600;
+      background: white;
+      color: var(--text-main);
+      text-decoration: none;
+      border-radius: 50px;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+      transition: all 0.3s;
+      position: relative;
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+    .contact-btn:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 25px 50px rgba(212, 168, 83, 0.25);
+    }
+    
+    footer {
+      padding: 3rem 0;
+      text-align: center;
+      background: rgba(255,255,255,0.5);
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Particle Burst on Hover */
+    .burst-particle {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: burst 0.8s ease-out forwards;
+    }
+    @keyframes burst {
+      0% { transform: scale(1) translate(0, 0); opacity: 1; }
+      100% { transform: scale(0) translate(var(--tx), var(--ty)); opacity: 0; }
+    }
+
+    @media (max-width: 992px) {
+      .hero-content h1 { font-size: 4rem; }
+      .bento-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr; gap: 4rem; }
+    }
+
+    @media (max-width: 768px) {
+      .hero-content h1 { font-size: 3rem; }
+      .hero-subtitle { font-size: 1.5rem; }
+      .about-grid, .certs-grid { grid-template-columns: 1fr; }
+      .tech-skills { grid-template-columns: repeat(2, 1fr); }
+      .timeline::before { left: 30px; }
+      .timeline-item { padding-left: 70px; }
+      .timeline-icon { left: 15px; }
+      .contact-links { flex-direction: column; align-items: center; }
+      .contact-btn { width: 100%; max-width: 300px; justify-content: center; }
+      #contact h2 { font-size: 2.5rem; }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Custom Cursor Glow -->
+  <div class="cursor-glow" id="cursor-glow"></div>
+
+  <!-- Background Blobs -->
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="blob blob-3"></div>
+
+  <!-- Hero Section -->
+  <section id="hero">
+    <canvas id="hero-canvas"></canvas>
+    <div class="container hero-content hidden">
+      <h2 class="hero-subtitle">Hi, I'm</h2>
+      <h1>Kolli Varshini</h1>
+      <h2 class="hero-subtitle" style="font-family: var(--font-body); font-style: normal; color: var(--gold); font-weight: 500;">
+        <span id="typed"></span>
+      </h2>
+      <p class="hero-tagline">Turning data into decisions, one model at a time.</p>
+      <div class="btn-group">
+        <a href="#projects" class="btn btn-primary">View My Work</a>
+        <a href="#contact" class="btn btn-secondary">Contact Me <i class="fas fa-arrow-right"></i></a>
+      </div>
+      <div style="margin-top: 3rem; display: flex; justify-content: center; gap: 1.5rem;">
+        <a href="https://github.com/kollivarshini7625-cpu" target="_blank" style="color: var(--text-main); font-size: 1.8rem; transition: all 0.3s;" onmouseover="this.style.color='var(--rose)'" onmouseout="this.style.color='var(--text-main)'"><i class="fab fa-github"></i></a>
+        <a href="mailto:kollivarshini2005@gmail.com" style="color: var(--text-main); font-size: 1.8rem; transition: all 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--text-main)'"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <div class="diagonal-sep"></div>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title hidden">About <span>Me</span></h2>
+      <div class="about-grid">
+        <div class="about-img hidden">
+          <div class="about-img-blob">
+            <img src="avatar.png" alt="Kolli Varshini" onerror="this.style.display='none'">
+          </div>
+        </div>
+        <div class="about-text hidden">
+          <p>
+            I'm a final-year B.Tech CSE student at <strong>Ashoka Women's Engineering College</strong> with a CGPA of 8.0, passionate about Machine Learning, Deep Learning, and building meaningful tech solutions. 
+          </p>
+          <p>
+            I love turning complex data problems into elegant, impactful models. My technical journey is fueled by curiosity, a solid foundation in Python, and a constant drive to learn emerging AI technologies. Whether it's detecting fraudulent transactions or analyzing speech to identify emotional patterns, I am dedicated to creating systems that make a difference.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Timeline -->
+  <section id="education">
+    <div class="container">
+      <h2 class="section-title hidden">My <span>Education</span></h2>
+      <div class="timeline" id="timeline">
+        <div class="timeline-item hidden">
+          <div class="timeline-icon"><i class="fas fa-graduation-cap"></i></div>
+          <div class="timeline-content">
+            <h3>B.Tech CSE</h3>
+            <h4>Ashoka Women's Engineering College</h4>
+            <p>2022 – 2026 | CGPA: 8.0</p>
+          </div>
+        </div>
+        <div class="timeline-item hidden">
+          <div class="timeline-icon"><i class="fas fa-book"></i></div>
+          <div class="timeline-content">
+            <h3>Class 12</h3>
+            <h4>Narayana Junior College</h4>
+            <p>2020 – 2022 | CGPA: 7.7</p>
+          </div>
+        </div>
+        <div class="timeline-item hidden">
+          <div class="timeline-icon"><i class="fas fa-school"></i></div>
+          <div class="timeline-content">
+            <h3>Class 10</h3>
+            <h4>Montessori Indus E.M School</h4>
+            <p>2020 | CGPA: 9.2</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects">
+    <div class="container">
+      <h2 class="section-title hidden">Featured <span>Projects</span></h2>
+      <div class="bento-grid">
+        
+        <div class="project-card hidden" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.1">
+          <img src="project-fraud.png" alt="Credit Card Fraud" class="project-img" onerror="this.style.display='none'">
+          <h3>Credit Card Fraud Detection</h3>
+          <div class="project-tags">
+            <span class="tag">Machine Learning</span>
+            <span class="tag">Python</span>
+            <span class="tag">Pandas</span>
+          </div>
+          <p>ML model designed to detect fraudulent credit card transactions using historical data and pattern analysis. By effectively analyzing transaction patterns, the model is able to distinguish between normal and fraudulent activity, aiding financial institutions in flagging suspicious behavior early to reduce potential risks.</p>
+          <div class="project-icons">
+            <i class="fas fa-chart-line"></i>
+            <i class="fas fa-shield-alt"></i>
+            <i class="fas fa-user-secret"></i>
+          </div>
+        </div>
+        
+        <div class="project-card hidden" data-tilt data-tilt-max="5" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.1">
+          <img src="project-speech.png" alt="Depression Detection" class="project-img" onerror="this.style.display='none'">
+          <h3>Speech-Based Depression Detection</h3>
+          <div class="project-tags">
+            <span class="tag">Deep Learning</span>
+            <span class="tag">LSTM</span>
+            <span class="tag">Audio Processing</span>
+          </div>
+          <p>Deep learning system developed to detect depression from speech signals. Utilizes audio feature extraction techniques like MFCC, pitch, and energy from voice recordings to analyze emotional patterns. A Long Short-Term Memory (LSTM) network classifies the depression levels with improved accuracy.</p>
+          <div class="project-icons">
+            <i class="fas fa-microphone-alt"></i>
+            <i class="fas fa-brain"></i>
+            <i class="fas fa-wave-square"></i>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills">
+    <svg class="skills-bg-svg" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+      <pattern id="pattern" width="120" height="120" patternUnits="userSpaceOnUse">
+        <circle cx="2" cy="2" r="2" fill="var(--sage)"></circle>
+        <circle cx="60" cy="60" r="1.5" fill="var(--gold)"></circle>
+        <path d="M 2 2 L 60 60 L 120 2" stroke="var(--lavender)" stroke-width="0.5" fill="none"></path>
+        <path d="M 60 60 L 120 120 M 60 60 L 0 120" stroke="var(--rose)" stroke-width="0.5" fill="none" opacity="0.5"></path>
+      </pattern>
+      <rect width="100%" height="100%" fill="url(#pattern)"></rect>
+    </svg>
+    <div class="container">
+      <h2 class="section-title hidden">My <span>Skills</span></h2>
+      <div class="skills-grid">
+        <div class="skills-column hidden">
+          <h3>Technical Expertise</h3>
+          <div class="tech-skills">
+            
+            <div class="skill-item">
+              <div class="skill-ring" data-percent="85" style="--ring-color: var(--rose);">
+                <svg><circle class="bg" cx="55" cy="55" r="45"></circle><circle class="progress" cx="55" cy="55" r="45"></circle></svg>
+                <span class="skill-ring-label">85%</span>
+              </div>
+              <div class="skill-name">Python</div>
+            </div>
+            
+            <div class="skill-item">
+              <div class="skill-ring" data-percent="80" style="--ring-color: var(--gold);">
+                <svg><circle class="bg" cx="55" cy="55" r="45"></circle><circle class="progress" cx="55" cy="55" r="45"></circle></svg>
+                <span class="skill-ring-label">80%</span>
+              </div>
+              <div class="skill-name">Machine Learning</div>
+            </div>
+            
+            <div class="skill-item">
+              <div class="skill-ring" data-percent="75" style="--ring-color: var(--sage);">
+                <svg><circle class="bg" cx="55" cy="55" r="45"></circle><circle class="progress" cx="55" cy="55" r="45"></circle></svg>
+                <span class="skill-ring-label">75%</span>
+              </div>
+              <div class="skill-name">Deep Learning</div>
+            </div>
+            
+            <div class="skill-item">
+              <div class="skill-ring" data-percent="70" style="--ring-color: #8fa8d1;">
+                <svg><circle class="bg" cx="55" cy="55" r="45"></circle><circle class="progress" cx="55" cy="55" r="45"></circle></svg>
+                <span class="skill-ring-label">70%</span>
+              </div>
+              <div class="skill-name">SQL</div>
+            </div>
+            
+            <div class="skill-item">
+              <div class="skill-ring" data-percent="65" style="--ring-color: var(--rose);">
+                <svg><circle class="bg" cx="55" cy="55" r="45"></circle><circle class="progress" cx="55" cy="55" r="45"></circle></svg>
+                <span class="skill-ring-label">65%</span>
+              </div>
+              <div class="skill-name">HTML / CSS</div>
+            </div>
+            
+            <div class="skill-item">
+              <div class="skill-ring" data-percent="75" style="--ring-color: var(--gold);">
+                <svg><circle class="bg" cx="55" cy="55" r="45"></circle><circle class="progress" cx="55" cy="55" r="45"></circle></svg>
+                <span class="skill-ring-label">75%</span>
+              </div>
+              <div class="skill-name">Data Viz</div>
+            </div>
+          </div>
+          
+          <div class="other-skills-flex">
+            <span class="skill-pill"><i class="fas fa-cube" style="color: var(--rose)"></i> Pandas</span>
+            <span class="skill-pill"><i class="fas fa-cube" style="color: var(--sage)"></i> NumPy</span>
+            <span class="skill-pill"><i class="fas fa-wave-square" style="color: var(--gold)"></i> Librosa</span>
+            <span class="skill-pill"><i class="fas fa-project-diagram" style="color: #8fa8d1"></i> TensorFlow</span>
+            <span class="skill-pill"><i class="fas fa-file-excel" style="color: #4CAF50"></i> MS Excel</span>
+          </div>
+        </div>
+        
+        <div class="skills-column hidden" style="transition-delay: 0.2s;">
+          <h3>Interpersonal Skills</h3>
+          <div class="other-skills-flex" style="margin-top: 1rem;">
+            <span class="skill-pill interpersonal"><i class="fas fa-lightbulb"></i> Problem Solving</span>
+            <span class="skill-pill interpersonal"><i class="fas fa-users"></i> Leadership</span>
+            <span class="skill-pill interpersonal"><i class="fas fa-hands-helping"></i> Teamwork</span>
+            <span class="skill-pill interpersonal"><i class="fas fa-comments"></i> Communication</span>
+            <span class="skill-pill interpersonal"><i class="fas fa-clock"></i> Time Management</span>
+          </div>
+          
+          <h3 style="margin-top: 5rem;">Languages</h3>
+          <div class="other-skills-flex" style="margin-top: 1rem;">
+            <span class="skill-pill"><i class="fas fa-language" style="color: var(--sage)"></i> English</span>
+            <span class="skill-pill"><i class="fas fa-language" style="color: var(--sage)"></i> Telugu</span>
+            <span class="skill-pill"><i class="fas fa-language" style="color: var(--sage)"></i> Hindi</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications Section -->
+  <section id="certifications">
+    <div class="container">
+      <h2 class="section-title hidden">My <span>Certifications</span></h2>
+      <div class="certs-grid">
+        <div class="cert-card hidden">
+          <div class="cert-img-container">
+            <img src="cert-c.jpg" alt="C for Beginners" onerror="this.style.display='none'; this.parentNode.innerHTML='<i class=\'fas fa-award cert-icon\'></i>';">
+          </div>
+          <h4>C for Beginners</h4>
+          <p>Great Learning</p>
+        </div>
+        <div class="cert-card hidden" style="transition-delay: 0.1s;">
+          <div class="cert-img-container">
+            <img src="cert-ai.jpg" alt="AI & ML" onerror="this.style.display='none'; this.parentNode.innerHTML='<i class=\'fas fa-medal cert-icon\' style=\'color: var(--rose)\'></i>';">
+          </div>
+          <h4>AI & ML</h4>
+          <p>Kodacy Space Technologies</p>
+        </div>
+        <div class="cert-card hidden" style="transition-delay: 0.2s;">
+          <div class="cert-img-container">
+            <!-- This will try to load your uploaded certificate -->
+            <img src="rooman-cert.jpg" alt="AI-Data Quality Analyst" onerror="this.style.display='none'; this.parentNode.innerHTML='<i class=\'fas fa-certificate cert-icon\' style=\'color: var(--gold)\'></i>';">
+          </div>
+          <h4>AI-Data Quality Analyst</h4>
+          <p>Rooman Technologies Pvt. Ltd</p>
+          <p class="cert-date">19 May 2025 - 14 Jul 2025</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container hidden">
+      <h2>Let's build something amazing together 🌸</h2>
+      <p class="contact-tagline">Open for opportunities and exciting projects.</p>
+      <div class="contact-links">
+        <a href="mailto:kollivarshini2005@gmail.com" class="contact-btn hover-effect">
+          <i class="fas fa-envelope-open-text" style="color: var(--rose);"></i> Email Me
+        </a>
+        <a href="https://github.com/kollivarshini7625-cpu" target="_blank" class="contact-btn hover-effect">
+          <i class="fab fa-github" style="color: var(--text-main);"></i> GitHub Profile
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Designed with 💛 by Kolli Varshini</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+  
+  <script>
+    // Custom Cursor Glow
+    const cursorGlow = document.getElementById('cursor-glow');
+    document.addEventListener('mousemove', (e) => {
+      cursorGlow.style.left = e.clientX + 'px';
+      cursorGlow.style.top = e.clientY + 'px';
+    });
+
+    // Typed.js initialization
+    var typed = new Typed('#typed', {
+      strings: ['Python Developer', 'ML Engineer', 'Problem Solver', 'CSE Student'],
+      typeSpeed: 60,
+      backSpeed: 40,
+      loop: true,
+      backDelay: 1500
+    });
+
+    // Particle Canvas Animation (Soft Light)
+    const canvas = document.getElementById('hero-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let particles = [];
+
+    function initCanvas() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+    
+    class Particle {
+      constructor() {
+        this.x = Math.random() * width;
+        this.y = Math.random() * height;
+        this.vx = (Math.random() - 0.5) * 0.6;
+        this.vy = (Math.random() - 0.5) * 0.6;
+        this.size = Math.random() * 2.5 + 1;
+        this.color = ['#D4A853', '#E8A0A0', '#A8C5A0', '#D8D2E7'][Math.floor(Math.random() * 4)];
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > width) this.vx *= -1;
+        if (this.y < 0 || this.y > height) this.vy *= -1;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+    }
+
+    function createParticles() {
+      particles = [];
+      let count = Math.floor(window.innerWidth / 18);
+      for (let i = 0; i < count; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    function animateParticles() {
+      ctx.clearRect(0, 0, width, height);
+      
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+
+      // Draw connections
+      ctx.lineWidth = 0.6;
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          let dx = particles[i].x - particles[j].x;
+          let dy = particles[i].y - particles[j].y;
+          let dist = Math.sqrt(dx * dx + dy * dy);
+          
+          if (dist < 120) {
+            ctx.beginPath();
+            let opacity = 1 - (dist / 120);
+            ctx.strokeStyle = `rgba(212, 168, 83, ${opacity * 0.3})`; 
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+      requestAnimationFrame(animateParticles);
+    }
+
+    window.addEventListener('resize', () => {
+      initCanvas();
+      createParticles();
+    });
+
+    initCanvas();
+    createParticles();
+    animateParticles();
+
+    // Intersection Observer for Scroll Animations
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          
+          // If it's the timeline, trigger line draw
+          if (entry.target.id === 'timeline' || entry.target.closest('#timeline')) {
+            document.getElementById('timeline').classList.add('draw-line');
+          }
+
+          // If it's skill ring, trigger animation
+          if (entry.target.classList.contains('skill-ring')) {
+            let percent = entry.target.getAttribute('data-percent');
+            // length of stroke is 283
+            let offset = 283 - (283 * percent) / 100;
+            entry.target.style.setProperty('--offset', offset);
+            entry.target.classList.add('animate');
+          }
+
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.hidden, .skill-ring').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Particle Burst on Hover for Contact Buttons
+    document.querySelectorAll('.hover-effect').forEach(btn => {
+      btn.addEventListener('mouseenter', function(e) {
+        for(let i=0; i<8; i++) {
+          createBurstParticle(e, this);
+        }
+      });
+    });
+
+    function createBurstParticle(e, parent) {
+      const particle = document.createElement('div');
+      particle.className = 'burst-particle';
+      
+      const rect = parent.getBoundingClientRect();
+      // Start near mouse or center
+      const x = (e.clientX - rect.left) || (rect.width / 2);
+      const y = (e.clientY - rect.top) || (rect.height / 2);
+      
+      particle.style.left = x + 'px';
+      particle.style.top = y + 'px';
+      
+      const size = Math.random() * 8 + 4;
+      particle.style.width = size + 'px';
+      particle.style.height = size + 'px';
+      
+      const colors = ['#D4A853', '#E8A0A0', '#A8C5A0'];
+      particle.style.background = colors[Math.floor(Math.random() * colors.length)];
+      
+      // Random movement
+      const tx = (Math.random() - 0.5) * 100;
+      const ty = (Math.random() - 0.5) * 100 - 50; // slightly upward
+      particle.style.setProperty('--tx', tx + 'px');
+      particle.style.setProperty('--ty', ty + 'px');
+      
+      parent.appendChild(particle);
+      
+      setTimeout(() => {
+        particle.remove();
+      }, 800);
+    }
+  </script>
+</body>
+</html>
